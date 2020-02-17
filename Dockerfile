@@ -40,6 +40,23 @@ cp stryker.data weblocation/game
 COPY confs/stryker_dosbox.conf weblocation/game
 
 
+# get website
+git clone https://github.com/Dogfalo/materialize.git
+
+git clone https://github.com/kolonuk/HTML5GameBrowser
+mkdir /var/www/websitelocation
+mv HTML5GameBrowser/www /var/www/websitelocation/
+mv HTML5GameBrowser/html5gamebrowser.conf /etc/nginx/sitesenabled/...
+
+wget https://github.com/Dogfalo/materialize/releases/download/1.0.0/materialize-v1.0.0.zip
+unzip materialize-v1.0.0.zip
+mv materialize/css /var/www/websitelocation/
+mv materialize/js /var/www/websitelocation/
+mv materialize/LICENCE /var/www/websitelocation/LICENCE_materialize
+mv materialize/README.md /var/www/websitelocation/README_materialize.md
+
+
+
 EXPOSE 8181:8181
 ENTRYPOINT ["/bin/bash", "cd /weblocation/;python -m SimpleHTTPServer 8181"]
 
